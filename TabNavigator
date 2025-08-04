@@ -1,0 +1,50 @@
+
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+// สร้างหน้าต่าง ๆ ที่จะอยู่ในแท็บ
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 24 }}>🏠 หน้าหลัก (Home)</Text>
+      <Button title="ไปหน้ารายละเอียด" onPress={() => alert('รายละเอียดอยู่หน้าอื่น')} />
+    </View>
+  );
+}
+
+function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 24 }}>👤 โปรไฟล์ (Profile)</Text>
+    </View>
+  );
+}
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 24 }}>⚙️ ตั้งค่า (Settings)</Text>
+    </View>
+  );
+}
+
+// สร้าง Tab Navigator
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={{ headerShown: false }} // ปิด header ถ้าไม่ต้องการ
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
