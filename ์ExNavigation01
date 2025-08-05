@@ -1,0 +1,45 @@
+import 'react-native-gesture-handler';
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+//หน้าหลักของ Mobile App
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ScreenA">
+        <Stack.Screen name="ScreenA" component={ScreenA} options={{ title: 'หน้าหลัก A' }} />
+        <Stack.Screen name="ScreenB" component={ScreenB} options={{ title: 'หน้า ฺB' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+//ฟังก์ชันหน้า A
+function ScreenA({ navigation }) {
+  return (
+    <View style={[styles.container, { backgroundColor: '#fff2cc' }]}>
+      <Text style={styles.title}>🅰️ หน้าจอ A</Text>
+      <Button title='ไปหน้าจอ B ➡️' onPress={()=> navigation.navigate('ScreenB')} />
+    </View>
+  );
+}
+//ฟังก์ชันหน้า B
+function ScreenB({ navigation }) {
+  return (
+    <View style={[styles.container, { backgroundColor: '#d9f2e6' }]}>
+      <Text style={styles.title}>🅱️ หน้าจอ B</Text>
+      <Button title="⬅️ ย้อนกลับหน้าจอ A" onPress={() => navigation.goBack()} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20
+  },
+  title: {
+    fontSize: 28, marginBottom: 20
+  }
+});
